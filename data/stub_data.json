@@ -1,0 +1,274 @@
+{
+    "characters": [
+        {
+            "id": 1,
+            "name": "Pierre",
+            "hair": "brun",
+            "eyes": "bleu",
+            "glasses": true,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 2,
+            "name": "Marie",
+            "hair": "blond",
+            "eyes": "vert",
+            "glasses": false,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 3,
+            "name": "Jean",
+            "hair": "noir",
+            "eyes": "marron",
+            "glasses": true,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 4,
+            "name": "Sophie",
+            "hair": "roux",
+            "eyes": "vert",
+            "glasses": true,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 5,
+            "name": "Lucas",
+            "hair": "brun",
+            "eyes": "marron",
+            "glasses": false,
+            "beard": true,
+            "hat": true
+        },
+        {
+            "id": 6,
+            "name": "Emma",
+            "hair": "noir",
+            "eyes": "bleu",
+            "glasses": false,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 7,
+            "name": "Thomas",
+            "hair": "blond",
+            "eyes": "marron",
+            "glasses": true,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 8,
+            "name": "Julie",
+            "hair": "roux",
+            "eyes": "bleu",
+            "glasses": false,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 9,
+            "name": "Antoine",
+            "hair": "noir",
+            "eyes": "vert",
+            "glasses": true,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 10,
+            "name": "Clara",
+            "hair": "blond",
+            "eyes": "bleu",
+            "glasses": true,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 11,
+            "name": "Nicolas",
+            "hair": "brun",
+            "eyes": "vert",
+            "glasses": false,
+            "beard": true,
+            "hat": true
+        },
+        {
+            "id": 12,
+            "name": "Sarah",
+            "hair": "noir",
+            "eyes": "marron",
+            "glasses": true,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 13,
+            "name": "Marc",
+            "hair": "roux",
+            "eyes": "bleu",
+            "glasses": false,
+            "beard": true,
+            "hat": true
+        },
+        {
+            "id": 14,
+            "name": "Léa",
+            "hair": "brun",
+            "eyes": "vert",
+            "glasses": true,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 15,
+            "name": "Paul",
+            "hair": "blond",
+            "eyes": "marron",
+            "glasses": false,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 16,
+            "name": "Chloé",
+            "hair": "roux",
+            "eyes": "vert",
+            "glasses": true,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 17,
+            "name": "Hugo",
+            "hair": "noir",
+            "eyes": "bleu",
+            "glasses": true,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 18,
+            "name": "Alice",
+            "hair": "blond",
+            "eyes": "vert",
+            "glasses": false,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 19,
+            "name": "Louis",
+            "hair": "brun",
+            "eyes": "marron",
+            "glasses": true,
+            "beard": true,
+            "hat": true
+        },
+        {
+            "id": 20,
+            "name": "Jade",
+            "hair": "noir",
+            "eyes": "bleu",
+            "glasses": false,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 21,
+            "name": "Gabriel",
+            "hair": "roux",
+            "eyes": "marron",
+            "glasses": true,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 22,
+            "name": "Inès",
+            "hair": "brun",
+            "eyes": "vert",
+            "glasses": false,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 23,
+            "name": "Arthur",
+            "hair": "blond",
+            "eyes": "bleu",
+            "glasses": true,
+            "beard": false,
+            "hat": false
+        },
+        {
+            "id": 24,
+            "name": "Zoé",
+            "hair": "noir",
+            "eyes": "marron",
+            "glasses": false,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 25,
+            "name": "Maxime",
+            "hair": "roux",
+            "eyes": "vert",
+            "glasses": true,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 26,
+            "name": "Louise",
+            "hair": "brun",
+            "eyes": "bleu",
+            "glasses": true,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 27,
+            "name": "Théo",
+            "hair": "noir",
+            "eyes": "vert",
+            "glasses": false,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 28,
+            "name": "Eva",
+            "hair": "blond",
+            "eyes": "marron",
+            "glasses": true,
+            "beard": false,
+            "hat": true
+        },
+        {
+            "id": 29,
+            "name": "Raphaël",
+            "hair": "brun",
+            "eyes": "bleu",
+            "glasses": false,
+            "beard": true,
+            "hat": false
+        },
+        {
+            "id": 30,
+            "name": "Manon",
+            "hair": "roux",
+            "eyes": "vert",
+            "glasses": true,
+            "beard": false,
+            "hat": true
+        }
+    ]
+}
