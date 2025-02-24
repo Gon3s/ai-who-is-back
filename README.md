@@ -1,20 +1,79 @@
-# ...existing code...
+# AI Who Is
 
-## Configuration de l'environnement
+A fun guessing game where you play against an AI. Ask yes/no questions to discover the mystery character chosen by the AI!
 
-1. Copiez le fichier `.env.example` en `.env`:
+## 🌟 Features
+
+- Interactive question-and-answer gameplay
+- AI-powered responses using Groq LLM
+- Character database with various attributes
+- Logging system for game progression
+- Limited attempts for added challenge
+
+## 📋 Prerequisites
+
+- Python 3.9+
+- A Groq API key (get it from [Groq Console](https://console.groq.com/))
+
+## 🚀 Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/Gon3s/ai-who-is.git
+cd ai-who-is
+```
+
+2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+3. Set up environment variables
 ```bash
 cp .env.example .env
 ```
 
-2. Modifiez le fichier `.env` avec vos paramètres:
-- Remplacez `gsk_votre_cle_api_ici` par votre clé API Groq
-- Ajustez les autres paramètres selon vos besoins (optionnel)
+## ⚙️ Configuration
 
-Les variables d'environnement disponibles sont:
-- `AIWHO_API_KEY`: Votre clé API Groq (requis)
-- `AIWHO_MODEL_NAME`: Le modèle à utiliser (optionnel)
-- `AIWHO_TEMPERATURE`: La température pour la génération (optionnel)
-- `AIWHO_MAX_TOKENS`: Le nombre maximum de tokens pour la réponse (optionnel)
+Edit the `.env` file with your settings:
 
-# ...existing code...
+```env
+AIWHO_API_KEY=your_groq_api_key_here
+```
+
+Optional settings:
+- `AIWHO_MODEL_NAME`: LLM model name (default: llama-3.1-8b-instant)
+- `AIWHO_TEMPERATURE`: Generation temperature (default: 0.3)
+- `AIWHO_MAX_TOKENS`: Max response tokens (default: 50)
+
+## 🎮 How to Play
+
+1. Start the game:
+```bash
+python main.py
+```
+
+2. The game will display available characters and their attributes
+3. Ask yes/no questions about the mystery character
+4. Try to guess who it is within 20 attempts!
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m '✨ Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## 👥 Authors
+
+- Kevin Cuoq - [@Gon3s](https://github.com/Gon3s)
+
+## ✨ Acknowledgments
+
+- Groq for their amazing LLM API
+- Original "Guess Who?" board game for inspiration
