@@ -1,11 +1,11 @@
-import asyncio
 from typing import Dict
 import logging
-from prompt_manager import PromptManager
-from config import LLMConfig
+from ai.prompt_manager import PromptManager
+from core.config import LLMConfig
 
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
+
 
 class AIPlayer:
     def __init__(self, character: Dict, config: LLMConfig):
