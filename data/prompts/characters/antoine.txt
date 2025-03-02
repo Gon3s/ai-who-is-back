@@ -1,0 +1,50 @@
+Create a character portrait for a "Who is it?" board game in the style of Pixar/Disney 3D animation. The character should have exaggerated features while maintaining charm and appeal.
+
+Character traits (ALL MUST BE CLEARLY VISIBLE):
+- Name: Antoine
+- Hair: grey medium hair
+- Eye color: green eyes
+- Glasses: wearing modern glasses
+- Beard: with a well-groomed beard
+- Hat: no hat
+- Gender: male
+- Height: short
+- Age range: 60s
+- Style: vintage
+- Skin tone: pale
+
+Visual requirements for traits:
+- Hair must be prominently displayed with distinctive style and color
+- Eyes must be large and their color clearly visible
+- Glasses, if present, should be a defining feature
+- Facial hair must be well-defined if present
+- Hat, if present, should be a notable part of the silhouette
+- Gender characteristics should be tastefully emphasized through facial features
+- Height impression should be conveyed through head and shoulder proportions
+- Age should be evident through facial features and expression
+- Style should be reflected in clothing details visible in shoulder area
+- Skin tone should be clear and consistent
+
+Artistic specifications:
+1. Camera angle: Portrait view, head and shoulders only, slightly exaggerated perspective
+2. Lighting: Bright and vibrant, classic Pixar-style rim lighting
+3. Background: Simple, solid pastel color
+4. Style: Stylized 3D cartoon animation with:
+   - Slightly oversized head and eyes
+   - Smooth, simplified features
+   - Exaggerated expressions
+   - Bold, clean shapes
+5. Expression: Big, warm, characterful smile
+6. Details:
+   - Stylized hair with distinct chunky strands
+   - Large, expressive eyes with catchlights
+   - Simplified but distinctive facial features
+   - Clean, smooth surfaces with subtle texturing
+   - Vibrant, saturated colors
+
+Technical requirements:
+- Resolution: 512x512 pixels
+- Style: Pixar/Disney-inspired 3D cartoon
+- No text or watermarks
+- Clear silhouette
+- High color contrast and appeal

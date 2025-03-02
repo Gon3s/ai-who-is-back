@@ -23,7 +23,37 @@ AI Who Is: A game where you play against an artificial intelligence (AI). The AI
 - Log errors with appropriate level (error, warning, info)
 - Return Optional types for functions that might fail
 
-### Commits
-- Use gitmoji in commit messages
-- Follow conventional commits format
-- Keep commits focused and atomic
+## Project Structure
+
+```
+ai-who-is/
+├── src/
+│   ├── models/            # Data models using Pydantic
+│   │   ├── character.py   # Character model definitions
+│   │   └── game.py       # Game state models
+│   ├── services/          # Business logic services
+│   │   ├── ai_service.py  # AI/LLM integration
+│   │   ├── game_service.py# Game mechanics
+│   │   └── db_service.py  # Data persistence
+│   ├── utils/            # Utility functions
+│   │   ├── logger.py     # Logging configuration
+│   │   └── config.py     # App configuration
+│   ├── api/             # API endpoints (if needed)
+│   │   └── routes.py    # API route definitions
+│   └── __init__.py
+├── tests/
+│   ├── unit/            # Unit tests
+│   ├── integration/     # Integration tests
+│   └── conftest.py     # Test configurations
+├── data/
+│   ├── characters/      # Character data files
+│   └── config/         # Configuration files
+├── logs/               # Application logs
+└── docs/              # Documentation
+```
+
+## Features
+
+All instructions are in the `docs/roadmap-console.md` file. Please refer to this file for the project roadmap.
+
+Check the roadmap for the next feature to implement. If you have any questions, please ask.
