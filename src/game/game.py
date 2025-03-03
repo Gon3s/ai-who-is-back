@@ -3,8 +3,8 @@ import random
 from typing import List, Dict
 from ai.ai_player import AIPlayer
 from dotenv import load_dotenv
-from core.config import LLMConfig
 from core.game_logger import GameLogger
+from utils.config import Settings
 
 # Charger les variables d'environnement au démarrage
 load_dotenv()
@@ -50,7 +50,7 @@ def display_game_characters(characters: List[Dict]):
     print("=" * 50)
 
 
-def initialize_game(config: LLMConfig):
+def initialize_game(config: Settings):
     """Initialise le jeu en sélectionnant les personnages."""
     game_logger = GameLogger()
     all_characters = load_characters()

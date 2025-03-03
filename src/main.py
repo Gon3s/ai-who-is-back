@@ -1,7 +1,12 @@
-import os
+import uvicorn
+from fastapi import FastAPI
+from api.routes import router
+from utils.config import get_settings
 
-from core.config import LLMConfig
 from game.game import check_victory, get_user_input, initialize_game
+
+app = FastAPI(title=get_settings().app_name)
+app.include_router(router)
 
 
 def main():
@@ -10,13 +15,9 @@ def main():
         "Posez des questions auxquelles je répondrai par Oui ou Non pour deviner le personnage mystère."
     )
 
-    api_key = os.getenv("AIWHO_API_KEY")
-    if not api_key:
-        print("Erreur: La clé API n'est pas définie dans le fichier .env")
-        return
-
-    config = LLMConfig(api_key=api_key)
-    characters, secret_character, ai_player, game_logger = initialize_game(config)
+    characters, secret_character, ai_player, game_logger = initialize_game(
+        get_settings()
+    )
 
     max_attempts = 20
     attempts = 0
@@ -62,4 +63,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    settings = get_settings()
+    uvicorn.run(
+        "main:app",
+        host=settings.api_host,
+        port=settings.api_port,
+        reload=settings.debug,
+    )

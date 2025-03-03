@@ -1,14 +1,14 @@
 from typing import Dict
 import logging
 from ai.prompt_manager import PromptManager
-from core.config import LLMConfig
+from utils.config import Settings
 
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
 class AIPlayer:
-    def __init__(self, character: Dict, config: LLMConfig):
+    def __init__(self, character: Dict, config: Settings):
         self.character = character
         self.prompt_manager = PromptManager(config)
         self.system_prompt = self.prompt_manager.create_system_prompt(character)

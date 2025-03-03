@@ -2,13 +2,13 @@ from typing import Dict, Optional
 from groq import Groq
 import logging
 import re
-from core.config import LLMConfig
+from utils.config import Settings
 
 logger = logging.getLogger(__name__)
 
 
 class PromptManager:
-    def __init__(self, config: LLMConfig):
+    def __init__(self, config: Settings):
         self.client = Groq(api_key=config.api_key)
         self.config = config
 
