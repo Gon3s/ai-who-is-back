@@ -1,0 +1,18 @@
+meta {
+  name: Ask question
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{host}}/game/question
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "game_id": "26537adf-5aee-4d96-b951-96cc8f3b666c",
+    "question": "A t'il les yeux marrons ?"
+  }
+}

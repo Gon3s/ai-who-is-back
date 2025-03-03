@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Who-is-IA",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
