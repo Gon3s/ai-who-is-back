@@ -1,11 +1,11 @@
 meta {
-  name: Ask question
+  name: Make guess
   type: http
-  seq: 2
+  seq: 3
 }
 
 post {
-  url: {{host}}/game/question
+  url: {{host}}/game/guess
   body: json
   auth: none
 }
@@ -13,6 +13,6 @@ post {
 body:json {
   {
     "game_id": "{{game_id}}",
-    "question": "A t'il les yeux marrons ?"
+    "character_name": "Bruno"
   }
 }

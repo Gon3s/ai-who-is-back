@@ -1,6 +1,12 @@
 import logging
 from fastapi import APIRouter, HTTPException, status
-from models.game import GameResponse, QuestionRequest, QuestionResponse
+from models.game import (
+    GameResponse,
+    QuestionRequest,
+    QuestionResponse,
+    GuessRequest,
+    GuessResponse,
+)
 from services.game_service import GameService, GameNotFoundError
 
 router = APIRouter()
@@ -77,4 +83,44 @@ async def ask_question(question_req: QuestionRequest):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to process question",
+        )
+
+@router.post("/game/guess", response_model=GuessResponse)
+async def make_guess(guess_req: GuessRequest):
+    """
+    Process a character guess
+    Args:
+        guess_req (GuessRequest): Contains game_id and character_name
+    Returns:
+        GuessResponse: Result of the guess and remaining attempts
+    Raises:
+        HTTPException: If game not found or invalid request
+    """
+    try:
+        if not guess_req.character_name.strip():
+            raise ValueError("Character name cannot be empty")
+
+        result = game_service.process_guess(guess_req.game_id, guess_req.character_name)
+        if result is None:
+            raise GameNotFoundError(f"Game {guess_req.game_id} not found")
+
+        is_correct, message, remaining = result
+        logger.info(
+            f"Guess processed for game {guess_req.game_id}. Correct: {is_correct}, Remaining attempts: {remaining}"
+        )
+        return GuessResponse(
+            is_correct=is_correct, message=message, remaining_attempts=remaining
+        )
+
+    except GameNotFoundError as e:
+        logger.warning(str(e))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    except ValueError as e:
+        logger.warning(str(e))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+    except Exception as e:
+        logger.error(f"Error processing guess: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to process guess",
         )

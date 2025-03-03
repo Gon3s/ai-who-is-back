@@ -1,11 +1,16 @@
 meta {
   name: Init Game
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
   url: {{host}}/game/init
   body: none
   auth: none
+}
+
+script:post-response {
+  const jsonData = res.body;
+  bru.setVar("game_id", jsonData.game_id);
 }

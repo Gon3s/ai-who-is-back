@@ -120,23 +120,28 @@ class GameService:
         self, game_id: str, character_name: str
     ) -> Optional[Tuple[bool, str, int]]:
         """Process a character guess and return (is_correct, message, remaining_attempts)"""
-        game = self.get_game(game_id)
-        if not game:
-            return None
+        try:
+            game = self._validate_game_state(self.get_game(game_id))
 
-        attempts = game.attempts if hasattr(game, "attempts") else 0
-        if attempts >= self.max_attempts:
-            return False, "Game Over - No more attempts left", 0
+            game.attempts += 1
+            remaining = self.MAX_ATTEMPTS - game.attempts
 
-        game.attempts = attempts + 1
-        remaining = self.max_attempts - game.attempts
+            is_correct = game.secret_character.name.lower() == character_name.lower()
 
-        is_correct = game.secret_character.name.lower() == character_name.lower()
+            message = (
+                f"Félicitations ! Vous avez trouvé en {game.attempts} tentatives !"
+                if is_correct
+                else "Désolé, ce n'est pas le bon personnage. Continuez à chercher !"
+            )
 
-        message = (
-            f"Félicitations ! Vous avez trouvé en {game.attempts} tentatives !"
-            if is_correct
-            else "Désolé, ce n'est pas le bon personnage. Continuez à chercher !"
-        )
+            logger.info(
+                f"Game {game_id}: Guess processed, correct: {is_correct}, {remaining} attempts remaining"
+            )
+            return is_correct, message, remaining
 
-        return is_correct, message, remaining
+        except (GameNotFoundError, GameOverError) as e:
+            logger.warning(f"Game {game_id}: {str(e)}")
+            raise
+        except Exception as e:
+            logger.error(f"Error processing guess: {str(e)}")
+            raise
