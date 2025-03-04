@@ -7,6 +7,7 @@ A fun guessing game where you play against an AI. Ask yes/no questions to discov
 - Interactive question-and-answer gameplay
 - AI-powered responses using Groq LLM
 - Character database with various attributes
+- RESTful API for game interaction
 - Logging system for game progression
 - Limited attempts for added challenge
 
@@ -17,32 +18,35 @@ ai-who-is/
 ├── src/
 │   ├── models/            # Data models using Pydantic
 │   │   ├── character.py   # Character model definitions
-│   │   └── game.py       # Game state models
+│   │   └── game.py        # Game state models
 │   ├── services/          # Business logic services
 │   │   ├── ai_service.py  # AI/LLM integration
 │   │   ├── game_service.py# Game mechanics
 │   │   └── db_service.py  # Data persistence
-│   ├── utils/            # Utility functions
-│   │   ├── logger.py     # Logging configuration
-│   │   └── config.py     # App configuration
-│   ├── api/             # API endpoints (if needed)
-│   │   └── routes.py    # API route definitions
+│   ├── utils/             # Utility functions
+│   │   ├── logger.py      # Logging configuration
+│   │   └── config.py      # App configuration
+│   ├── api/               # API endpoints
+│   │   └── routes.py      # API route definitions
 │   └── __init__.py
 ├── tests/
-│   ├── unit/            # Unit tests
-│   ├── integration/     # Integration tests
-│   └── conftest.py     # Test configurations
+│   ├── unit/             # Unit tests
+│   ├── integration/      # Integration tests
+│   └── conftest.py       # Test configurations
 ├── data/
-│   ├── characters/      # Character data files
-│   └── config/         # Configuration files
-├── logs/               # Application logs
-└── docs/              # Documentation
+│   ├── characters/       # Character data files
+│   └── config/           # Configuration files
+├── logs/                 # Application logs
+├── _bruno/               # Bruno API client collection
+└── docs/                 # Documentation
 ```
 
 ## 📋 Prerequisites
 
 - Python 3.9+
+- [uv](https://github.com/astral-sh/uv) - Fast Python package installer and resolver
 - A Groq API key (get it from [Groq Console](https://console.groq.com/))
+- [Bruno](https://www.usebruno.com/) (optional, for API testing)
 
 ## 🚀 Installation
 
@@ -52,15 +56,23 @@ git clone https://github.com/Gon3s/ai-who-is-back.git
 cd ai-who-is-back
 ```
 
-2. Create a virtual environment
+2. Install uv if you don't have it yet
 ```bash
-python -m venv venv
-source venv/bin/activate
+# Install with pip
+pip install uv
+
+# Or on macOS with Homebrew
+brew install uv
+
+# Or on Windows with Scoop
+scoop install uv
 ```
 
-3. Install dependencies
+3. Create a virtual environment and install dependencies with uv
 ```bash
-pip install -r requirements.txt
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
 ```
 
 4. Set up environment variables
@@ -73,30 +85,65 @@ cp .env.example .env
 Edit the `.env` file with your settings:
 
 ```env
+# Application Settings
+AIWHO_APP_NAME="AI Who Is"
+AIWHO_DEBUG=false
+AIWHO_API_HOST=0.0.0.0
+AIWHO_API_PORT=8000
+
+# Required: Get your API key from https://console.groq.com/
 AIWHO_API_KEY=your_groq_api_key_here
 ```
 
-Optional settings:
-- `AIWHO_MODEL_NAME`: LLM model name (default: llama-3.1-8b-instant)
-- `AIWHO_TEMPERATURE`: Generation temperature (default: 0.3)
-- `AIWHO_MAX_TOKENS`: Max response tokens (default: 50)
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `AIWHO_APP_NAME` | Application name | "AI Who Is" |
+| `AIWHO_DEBUG` | Enable debug mode | false |
+| `AIWHO_API_HOST` | API server host | 0.0.0.0 |
+| `AIWHO_API_PORT` | API server port | 8000 |
+| `AIWHO_API_KEY` | **Required:** Your Groq API key | - |
+| `AIWHO_MODEL_NAME` | LLM model name | llama-3.1-8b-instant |
+| `AIWHO_TEMPERATURE` | Generation temperature (0.0-1.0) | 0.3 |
+| `AIWHO_MAX_TOKENS` | Maximum tokens for response | 50 |
+
+**Note:** You must obtain an API key from [Groq Console](https://console.groq.com/) to use this application.
 
 ## 🎮 How to Play
 
-1. Start the game
+### API Server
+
+1. Start the application using uv
 ```bash
-python -m src.game
+uv run src/main.py
 ```
 
-2. The game will display available characters and their attributes
-3. Ask yes/no questions about the mystery character
-4. Try to guess who it is within 20 attempts!
-
-## 🧪 Running Tests
-
+Alternatively, if you're using the API server:
 ```bash
-pytest tests/
+uv run -m uvicorn src.api.main:app --reload
 ```
+
+2. The API will be available at `http://localhost:8000`
+
+3. Use the API endpoints to play:
+   - `POST /game/init` - Start a new game
+   - `POST /game/question` - Ask a question about the mystery character
+   - `POST /game/guess` - Make a guess at the mystery character
+
+## 🔌 Using Bruno API Client
+
+This project includes a [Bruno](https://www.usebruno.com/) API collection to easily interact with the game API.
+
+1. Install Bruno from [usebruno.com](https://www.usebruno.com/downloads)
+2. Open Bruno and select "Open Collection"
+3. Navigate to the `_bruno` folder in this project
+4. Use the available requests:
+   - "Init Game" - Starts a new game and stores the game_id
+   - "Ask question" - Send a question about the mystery character
+   - "Make guess" - Make a guess at who the mystery character is
+
+The collection is set up with environment variables to automatically store the game ID between requests.
 
 ## 🤝 Contributing
 
@@ -117,4 +164,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## ✨ Acknowledgments
 
 - Groq for their amazing LLM API
+- [uv](https://github.com/astral-sh/uv) for fast Python package management
 - Original "Guess Who?" board game for inspiration

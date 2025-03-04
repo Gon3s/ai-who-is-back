@@ -98,7 +98,10 @@ class GameService:
             remaining = self.MAX_ATTEMPTS - game.attempts
 
             ai_player = AIPlayer(game.secret_character, self.config)
-            answer = ai_player.answer_question(question)
+            response = ai_player.answer_question(question)
+
+            # Convert enum to string if we have a valid response
+            answer = response.value if response else "Je ne peux pas répondre"
 
             logger.info(
                 f"Game {game_id}: Question processed, {remaining} attempts remaining"

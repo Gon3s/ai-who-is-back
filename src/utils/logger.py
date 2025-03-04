@@ -61,7 +61,6 @@ def get_app_logger(module_name: str, logs_dir: str = "logs") -> logging.Logger:
     Returns:
         Configured logger instance
     """
-    # Use a fixed log file name for the application logger
     log_file = os.path.join(logs_dir, "api.log")
 
     return setup_logger(

@@ -1,22 +1,22 @@
-from typing import Optional, Literal
+from typing import Optional
 from groq import Groq
 from models.character import Character
+from models.responses import ValidResponse
 from utils.logger import get_app_logger
 from utils.config import Settings
 
 logger = get_app_logger(__name__)
 
-ValidResponse = Literal["Oui", "Non", "Je ne peux pas répondre"]
 
 class PromptManager:
-    """Gère les interactions avec l'API Groq pour le jeu Qui est-ce."""
+    """Manages interactions with the Groq API for the Who Is It game."""
 
     def __init__(self, config: Settings) -> None:
         """
-        Initialise le gestionnaire de prompts.
+        Initializes the prompt manager.
 
         Args:
-            config: Configuration contenant les paramètres de l'API
+            config: Configuration containing API parameters
         """
         if not config.api_key:
             raise ValueError("API key is required")
@@ -24,7 +24,7 @@ class PromptManager:
         self.config = config
 
     def create_system_prompt(self, character: Character) -> str:
-        """Crée le prompt système qui définit le contexte pour le LLM."""
+        """Creates the system prompt that defines the context for the LLM."""
         return f"""Tu es un assistant qui joue au jeu "Qui est-ce?". 
 Tu as choisi le personnage suivant :
 - Nom: {character.name}
@@ -48,13 +48,13 @@ INSTRUCTIONS IMPORTANTES:
 
     def clean_response(self, response: str) -> ValidResponse:
         """
-        Nettoie et valide la réponse de l'API.
+        Cleans and validates the API response.
 
         Args:
-            response: Réponse brute de l'API
+            response: Raw response from the API
 
         Returns:
-            Une réponse valide parmi: "Oui", "Non", "Je ne peux pas répondre"
+            A valid response from the ValidResponse enum
         """
         if response.endswith("."):
             response = response[:-1]
@@ -62,32 +62,32 @@ INSTRUCTIONS IMPORTANTES:
         response = response.strip().lower()
 
         response_mapping = {
-            "oui": "Oui",
-            "non": "Non",
-            "je ne peux pas répondre": "Je ne peux pas répondre",
+            "oui": ValidResponse.YES,
+            "non": ValidResponse.NO,
+            "je ne peux pas répondre": ValidResponse.UNKNOWN,
         }
 
-        logger.debug(f"Réponse nettoyée: {response}")
+        logger.debug(f"Cleaned response: {response}")
 
-        return response_mapping.get(response, "Je ne peux pas répondre")
+        return response_mapping.get(response, ValidResponse.UNKNOWN)
 
     def get_answer(self, system_prompt: str, question: str) -> Optional[ValidResponse]:
         """
-        Obtient une réponse de l'API Groq.
+        Gets a response from the Groq API.
 
         Args:
-            system_prompt: Le prompt système définissant le contexte
-            question: La question posée par le joueur
+            system_prompt: The system prompt defining the context
+            question: The question asked by the player
 
         Returns:
-            La réponse validée ou None en cas d'erreur
+            The validated response or None in case of error
 
         Raises:
-            groq.APIError: En cas d'erreur de l'API
+            groq.APIError: In case of API error
         """
         try:
             if not question.strip():
-                logger.warning("Question vide reçue")
+                logger.warning("Empty question received")
                 return None
 
             response = self.client.chat.completions.create(
@@ -100,17 +100,17 @@ INSTRUCTIONS IMPORTANTES:
                 max_tokens=self.config.max_tokens,
             )
 
-            logger.debug(f"Réponse brute de l'API: {response}")
+            logger.debug(f"Raw API response: {response}")
 
             if not response.choices:
-                logger.error("Aucune réponse reçue de l'API")
+                logger.error("No response received from API")
                 return None
 
             raw_response = response.choices[0].message.content
-            logger.debug(f"Réponse brute: {raw_response}")
+            logger.debug(f"Raw response: {raw_response}")
 
             return self.clean_response(raw_response)
 
         except Exception as e:
-            logger.error(f"Erreur lors de l'appel à Groq: {str(e)}")
+            logger.error(f"Error during Groq API call: {str(e)}")
             return None
