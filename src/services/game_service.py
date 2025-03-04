@@ -1,13 +1,13 @@
 import uuid
-import logging
 from typing import Dict, Tuple, Optional, List
 from models.game import GameState, Character
 from game.game import GameManager
 from ai.ai_player import AIPlayer
 from utils.config import get_settings
 from utils.exceptions import GameNotFoundError, GameOverError
+from utils.logger import get_app_logger
 
-logger = logging.getLogger(__name__)
+logger = get_app_logger(__name__)
 
 
 class GameService:

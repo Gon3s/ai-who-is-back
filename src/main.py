@@ -3,16 +3,16 @@ Main application entry point for the AI Who Is game.
 Configures FastAPI server and starts the application.
 """
 
-import logging
 import os
 from typing import NoReturn
 
 import uvicorn
 from fastapi import FastAPI, staticfiles
 from api.routes import router
+from utils.logger import get_app_logger
 from utils.config import Settings, get_settings
 
-logger = logging.getLogger(__name__)
+logger = get_app_logger(__name__)
 
 def create_app(settings: Settings) -> FastAPI:
     """Create and configure the FastAPI application."""

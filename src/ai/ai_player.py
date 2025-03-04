@@ -1,11 +1,10 @@
 from typing import Optional
-import logging
 from ai.prompt_manager import PromptManager
 from models.character import Character
 from utils.config import Settings
+from utils.logger import get_app_logger
 
-logging.basicConfig(level=logging.ERROR)
-logger = logging.getLogger(__name__)
+logger = get_app_logger(__name__)
 
 
 class AIPlayer:

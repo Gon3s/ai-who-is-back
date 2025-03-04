@@ -1,11 +1,10 @@
 from typing import Optional, Literal
 from groq import Groq
-import logging
-import re
 from models.character import Character
+from utils.logger import get_app_logger
 from utils.config import Settings
 
-logger = logging.getLogger(__name__)
+logger = get_app_logger(__name__)
 
 ValidResponse = Literal["Oui", "Non", "Je ne peux pas répondre"]
 
@@ -57,7 +56,9 @@ INSTRUCTIONS IMPORTANTES:
         Returns:
             Une réponse valide parmi: "Oui", "Non", "Je ne peux pas répondre"
         """
-        response = re.sub(r"<think>.*?</think>", "", response, flags=re.DOTALL)
+        if response.endswith("."):
+            response = response[:-1]
+
         response = response.strip().lower()
 
         response_mapping = {
@@ -65,6 +66,8 @@ INSTRUCTIONS IMPORTANTES:
             "non": "Non",
             "je ne peux pas répondre": "Je ne peux pas répondre",
         }
+
+        logger.debug(f"Réponse nettoyée: {response}")
 
         return response_mapping.get(response, "Je ne peux pas répondre")
 
@@ -96,6 +99,8 @@ INSTRUCTIONS IMPORTANTES:
                 temperature=self.config.temperature,
                 max_tokens=self.config.max_tokens,
             )
+
+            logger.debug(f"Réponse brute de l'API: {response}")
 
             if not response.choices:
                 logger.error("Aucune réponse reçue de l'API")

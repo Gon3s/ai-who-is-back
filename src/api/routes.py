@@ -1,4 +1,3 @@
-import logging
 from fastapi import APIRouter, HTTPException, status
 from models.game import (
     GameResponse,
@@ -8,10 +7,11 @@ from models.game import (
     GuessResponse,
 )
 from services.game_service import GameService, GameNotFoundError
+from utils.logger import get_app_logger
 
 router = APIRouter()
 game_service = GameService()
-logger = logging.getLogger(__name__)
+logger = get_app_logger(__name__)
 
 @router.get("/health", status_code=status.HTTP_200_OK)
 async def health_check():

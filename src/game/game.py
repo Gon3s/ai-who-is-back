@@ -1,11 +1,11 @@
 import json
 import random
-import logging
 from typing import List, Dict, Optional
 from pathlib import Path
 from dotenv import load_dotenv
+from utils.logger import get_app_logger
 
-logger = logging.getLogger(__name__)
+logger = get_app_logger(__name__)
 
 class GameManager:
     """Gère les opérations principales du jeu."""
@@ -79,6 +79,7 @@ class GameManager:
                 return None
             character = random.choice(game_characters)
             logger.info("Personnage mystère sélectionné avec succès")
+            logger.debug(f"Personnage mystère: {character}")
             return character
         except Exception as e:
             logger.error(f"Erreur lors du choix du personnage mystère: {str(e)}")
