@@ -48,8 +48,8 @@ ai-who-is/
 
 1. Clone the repository
 ```bash
-git clone https://github.com/Gon3s/ai-who-is.git
-cd ai-who-is
+git clone https://github.com/Gon3s/ai-who-is-back.git
+cd ai-who-is-back
 ```
 
 2. Create a virtual environment
