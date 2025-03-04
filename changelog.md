@@ -1,7 +1,14 @@
 # Changelog - Qui est-ce ?
 
 ## [Unreleased]
+### Added
+- Support for character images via automatic path generation based on character names
+- Added image field to Character model
+- Added static file serving to expose character images via HTTP
+- Added image_url field to Character model to provide web-accessible image paths
+
 ### Changed
+- Modified main.py to serve static files from the images directory
 - Modification du système de réponse de l'IA pour ne répondre que par Oui/Non
 - Mise à jour des messages pour indiquer clairement aux joueurs que les questions doivent pouvoir être répondues par Oui/Non
 - Implémentation d'un système d'analyse des questions pour l'IA

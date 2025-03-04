@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class Character(BaseModel):
@@ -16,3 +17,19 @@ class Character(BaseModel):
     gender: str
     style: str
     skin_tone: str
+    image_url: Optional[str] = None
+
+    def get_image_url(self) -> str:
+        """
+        Generate the URL for the character image.
+
+        Returns:
+            str: URL to access the character image
+        """
+        filename = self.name.lower().replace(" ", "_")
+        return f"/images/{filename}.jpg"
+
+    def __init__(self, **data):
+        """Initialize character and set default image path if not provided."""
+        super().__init__(**data)
+        self.image_url = self.get_image_url()

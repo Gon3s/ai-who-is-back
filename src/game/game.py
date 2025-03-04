@@ -28,6 +28,7 @@ class GameManager:
             with open(self.data_file, "r", encoding="utf-8") as file:
                 data = json.load(file)
                 self.characters = data["characters"]
+
                 logger.info(f"Chargé {len(self.characters)} personnages avec succès")
         except FileNotFoundError:
             logger.error(f"Fichier de données non trouvé: {self.data_file}")
