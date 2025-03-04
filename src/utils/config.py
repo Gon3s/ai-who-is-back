@@ -7,6 +7,8 @@ class Settings(BaseSettings):
 
     # App settings
     app_name: str = "AI Who Is"
+    app_description: str = "A game to guess the AI who generated a text."
+    version: str = "1.0.0"
     debug: bool = False
     api_host: str = "0.0.0.0"
     api_port: int = 8000

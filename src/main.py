@@ -15,7 +15,12 @@ logger = logging.getLogger(__name__)
 
 def create_app(settings: Settings) -> FastAPI:
     """Create and configure the FastAPI application."""
-    app = FastAPI(title=settings.app_name)
+    app = FastAPI(
+        title=settings.app_name,
+        description=settings.app_description,
+        version=settings.version,
+        docs_url="/docs",
+    )
     app.include_router(router)
     return app
 
