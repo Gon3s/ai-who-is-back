@@ -6,8 +6,12 @@ COPY requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-# Copy the generated .env file
-COPY .env /app/.env
+RUN --mount=type=secret,id=AIWHO_API_KEY \
+    echo 'AIWHO_APP_NAME="AI Who Is"' > /app/.env && \
+    echo 'AIWHO_DEBUG=false' >> /app/.env && \
+    echo 'AIWHO_API_HOST=0.0.0.0' >> /app/.env && \
+    echo 'AIWHO_API_PORT=80' >> /app/.env && \
+    echo "AIWHO_API_KEY=$(cat /run/secrets/AIWHO_API_KEY)" >> /app/.env
 
 COPY src/ /app/src
 
