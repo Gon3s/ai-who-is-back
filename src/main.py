@@ -17,11 +17,11 @@ def create_app(settings: Settings) -> FastAPI:
         title=settings.app_name,
         description=settings.app_description,
         version=settings.version,
-        docs_url="/docs",
+        docs_url="/api/docs",
     )
 
     # Include API routes
-    app.include_router(router)
+    app.include_router(router, prefix="/api")
 
     # Configure static files for serving images
     # The mount path '/images' will be used in URLs
