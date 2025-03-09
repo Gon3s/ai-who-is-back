@@ -1,13 +1,14 @@
 from fastapi import APIRouter, HTTPException, status
-from models.game import (
+
+from src.models.game import (
     GameResponse,
     QuestionRequest,
     QuestionResponse,
     GuessRequest,
     GuessResponse,
 )
-from services.game_service import GameService, GameNotFoundError
-from utils.logger import get_app_logger
+from src.services.game_service import GameService, GameNotFoundError
+from src.utils.logger import get_app_logger
 
 router = APIRouter()
 game_service = GameService()

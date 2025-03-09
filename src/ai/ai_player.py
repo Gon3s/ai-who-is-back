@@ -1,9 +1,10 @@
 from typing import Optional
-from ai.prompt_manager import PromptManager
-from models.character import Character
-from models.responses import ValidResponse
-from utils.config import Settings
-from utils.logger import get_app_logger
+
+from src.ai.prompt_manager import PromptManager
+from src.models.character import Character
+from src.models.responses import ValidResponse
+from src.utils.config import Settings
+from src.utils.logger import get_app_logger
 
 logger = get_app_logger(__name__)
 

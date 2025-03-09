@@ -88,8 +88,6 @@ Edit the `.env` file with your settings:
 # Application Settings
 AIWHO_APP_NAME="AI Who Is"
 AIWHO_DEBUG=false
-AIWHO_API_HOST=0.0.0.0
-AIWHO_API_PORT=8000
 
 # Required: Get your API key from https://console.groq.com/
 AIWHO_API_KEY=your_groq_api_key_here
@@ -101,8 +99,6 @@ AIWHO_API_KEY=your_groq_api_key_here
 |----------|-------------|---------|
 | `AIWHO_APP_NAME` | Application name | "AI Who Is" |
 | `AIWHO_DEBUG` | Enable debug mode | false |
-| `AIWHO_API_HOST` | API server host | 0.0.0.0 |
-| `AIWHO_API_PORT` | API server port | 8000 |
 | `AIWHO_API_KEY` | **Required:** Your Groq API key | - |
 | `AIWHO_MODEL_NAME` | LLM model name | llama-3.1-8b-instant |
 | `AIWHO_TEMPERATURE` | Generation temperature (0.0-1.0) | 0.3 |
@@ -116,12 +112,7 @@ AIWHO_API_KEY=your_groq_api_key_here
 
 1. Start the application using uv
 ```bash
-uv run src/main.py
-```
-
-Alternatively, if you're using the API server:
-```bash
-uv run -m uvicorn src.api.main:app --reload
+uvicorn src.main:app --host 0.0.0.0 --port 8000
 ```
 
 2. The API will be available at `http://localhost:8000`

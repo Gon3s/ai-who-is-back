@@ -1,6 +1,7 @@
 from typing import List
 from pydantic import BaseModel
-from models.character import Character
+
+from src.models.character import Character
 
 
 class GameResponse(BaseModel):

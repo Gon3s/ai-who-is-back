@@ -3,7 +3,8 @@ import random
 from typing import List, Dict, Optional
 from pathlib import Path
 from dotenv import load_dotenv
-from utils.logger import get_app_logger
+
+from src.utils.logger import get_app_logger
 
 logger = get_app_logger(__name__)
 

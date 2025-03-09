@@ -4,13 +4,10 @@ Configures FastAPI server and starts the application.
 """
 
 import os
-from typing import NoReturn
-
-import uvicorn
 from fastapi import FastAPI, staticfiles
-from api.routes import router
-from utils.logger import get_app_logger
-from utils.config import Settings, get_settings
+from src.api.routes import router
+from src.utils.logger import get_app_logger
+from src.utils.config import Settings, get_settings
 
 logger = get_app_logger(__name__)
 
@@ -48,22 +45,7 @@ def create_app(settings: Settings) -> FastAPI:
 
     return app
 
-def start_server(app: FastAPI, settings: Settings) -> NoReturn:
-    """Start the uvicorn server with error handling."""
-    try:
-        logger.info(f"Starting server on {settings.api_host}:{settings.api_port}")
-        uvicorn.run(
-            app,
-            host=settings.api_host,
-            port=settings.api_port,
-            reload=settings.debug,
-        )
-    except Exception as e:
-        logger.error(f"Failed to start server: {str(e)}")
-        raise
 
-
-if __name__ == "__main__":
-    settings = get_settings()
-    app = create_app(settings)
-    start_server(app, settings)
+# Create the application instance
+settings = get_settings()
+app = create_app(settings)

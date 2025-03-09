@@ -1,11 +1,12 @@
 import uuid
 from typing import Dict, Tuple, Optional, List
-from models.game import GameState, Character
-from game.game import GameManager
-from ai.ai_player import AIPlayer
-from utils.config import get_settings
-from utils.exceptions import GameNotFoundError, GameOverError
-from utils.logger import get_app_logger
+
+from src.models.game import GameState, Character
+from src.game.game import GameManager
+from src.ai.ai_player import AIPlayer
+from src.utils.config import get_settings
+from src.utils.exceptions import GameNotFoundError, GameOverError
+from src.utils.logger import get_app_logger
 
 logger = get_app_logger(__name__)
 

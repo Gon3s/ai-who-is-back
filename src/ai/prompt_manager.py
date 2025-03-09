@@ -1,9 +1,10 @@
 from typing import Optional
 from groq import Groq
-from models.character import Character
-from models.responses import ValidResponse
-from utils.logger import get_app_logger
-from utils.config import Settings
+
+from src.models.character import Character
+from src.models.responses import ValidResponse
+from src.utils.logger import get_app_logger
+from src.utils.config import Settings
 
 logger = get_app_logger(__name__)
 
