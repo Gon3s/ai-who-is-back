@@ -69,11 +69,13 @@ async def ask_question(question_req: QuestionRequest):
         if result is None:
             raise GameNotFoundError(f"Game {question_req.game_id} not found")
 
-        answer, remaining = result
+        answer, remaining, secret_character = result
         logger.info(
             f"Question processed for game {question_req.game_id}. Remaining attempts: {remaining}"
         )
-        return QuestionResponse(answer=answer, remaining_attempts=remaining)
+        return QuestionResponse(
+            answer=answer, remaining_attempts=remaining, debug=secret_character
+        )
 
     except GameNotFoundError as e:
         logger.warning(str(e))

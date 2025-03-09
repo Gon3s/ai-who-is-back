@@ -25,6 +25,7 @@ class QuestionResponse(BaseModel):
 
     answer: str
     remaining_attempts: int
+    debug: Optional[Character]
 
 
 class GuessRequest(BaseModel):

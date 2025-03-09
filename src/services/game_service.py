@@ -78,7 +78,9 @@ class GameService:
 
         return game
 
-    def process_question(self, game_id: str, question: str) -> Tuple[str, int]:
+    def process_question(
+        self, game_id: str, question: str
+    ) -> Tuple[str, int, Character]:
         """Process a player's question.
 
         Args:
@@ -107,7 +109,7 @@ class GameService:
             logger.info(
                 f"Game {game_id}: Question processed, {remaining} attempts remaining"
             )
-            return answer, remaining
+            return answer, remaining, game.secret_character
 
         except (GameNotFoundError, GameOverError) as e:
             logger.warning(f"Game {game_id}: {str(e)}")
