@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 
 from src.models.character import Character
@@ -10,6 +10,7 @@ class GameResponse(BaseModel):
     game_id: str
     characters: List[Character]
     message: str = "Game initialized successfully"
+    debug: Optional[Character]
 
 
 class QuestionRequest(BaseModel):

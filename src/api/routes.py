@@ -35,9 +35,11 @@ async def initialize_game():
         HTTPException: If game creation fails
     """
     try:
-        game_id, characters, _ = game_service.create_game()
+        game_id, characters, secret_character = game_service.create_game()
         logger.info(f"New game created with ID: {game_id}")
-        return GameResponse(game_id=game_id, characters=characters)
+        return GameResponse(
+            game_id=game_id, characters=characters, debug=secret_character
+        )
     except Exception as e:
         logger.error(f"Failed to create game: {str(e)}")
         raise HTTPException(
