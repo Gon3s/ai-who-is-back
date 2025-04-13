@@ -1,6 +1,6 @@
 from typing import Optional
 
-from src.ai.prompt_manager import PromptManager
+from src.ai.langchain_manager import LangChainManager
 from src.models.character import Character
 from src.models.responses import ValidResponse
 from src.utils.config import Settings
@@ -11,8 +11,15 @@ logger = get_app_logger(__name__)
 
 class AIPlayer:
     def __init__(self, character: Character, config: Settings):
-        self.prompt_manager = PromptManager(config)
-        self.system_prompt = self.prompt_manager.create_system_prompt(character)
+        """
+        Initialize the AI player with the given character and configuration.
+
+        Args:
+            character: The character to be guessed
+            config: Application settings including LLM parameters
+        """
+        self.character = character
+        self.langchain_manager = LangChainManager(config)
 
     def answer_question(self, question: str) -> Optional[ValidResponse]:
         """
@@ -24,4 +31,5 @@ class AIPlayer:
         Returns:
             Optional[ValidResponse]: A valid response from the ValidResponse enum
         """
-        return self.prompt_manager.get_answer(self.system_prompt, question)
+        logger.info("Processing question using LangChain")
+        return self.langchain_manager.get_answer(self.character, question)

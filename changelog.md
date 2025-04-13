@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 ### Added
+- Intégration de LangChain pour une gestion plus flexible des interactions avec les modèles de langage
+- Système avancé de chaînes de traitement avec mémoire de conversation
+- Support pour les chaînes de décision basées sur les attributs des personnages
+- Possibilité de basculer entre chaîne simple et chaîne avancée via un flag
 - Support for character images via automatic path generation based on character names
 - Added image field to Character model
 - Added static file serving to expose character images via HTTP
@@ -9,6 +13,8 @@
 
 ### Changed
 - Modified main.py to serve static files from the images directory
+- Remplacement de l'utilisation directe de l'API Groq par LangChain pour une meilleure flexibilité
+- Mise à jour des dépendances pour inclure LangChain et ses composants
 - Modification du système de réponse de l'IA pour ne répondre que par Oui/Non
 - Mise à jour des messages pour indiquer clairement aux joueurs que les questions doivent pouvoir être répondues par Oui/Non
 - Implémentation d'un système d'analyse des questions pour l'IA
@@ -43,3 +49,8 @@
 - Système de questions interactif
 - Affichage de la question posée
 - Option pour quitter le jeu (commandes : quit, q, exit)
+
+### Intelligence artificielle
+- Intégration de LangChain pour une gestion avancée des modèles LLM
+- Système de mémoire pour suivre le contexte des conversations
+- Analyse avancée des attributs du personnage
